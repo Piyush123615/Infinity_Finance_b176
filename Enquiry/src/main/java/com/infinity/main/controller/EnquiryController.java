@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.infinity.main.model.Enquiry;
+import com.infinity.main.model.enquirystatus;
 import com.infinity.main.service.EnquiryService;
 
 @RestController
@@ -34,10 +35,10 @@ public class EnquiryController {
 		return new ResponseEntity<List<Enquiry>>(enq, HttpStatus.OK);
 	}
 	
-	@GetMapping("/get_enquiry/{estatus}")
-	public ResponseEntity<Enquiry> get_enquirybystatus(@PathVariable Enum estatus)
+	@GetMapping("/get_enquiry/{status}")
+	public ResponseEntity<Enquiry> get_enquirybystatus(@PathVariable enquirystatus status)
 	{
-		Enquiry enq=enquiryService.get_enqDetailsbyestatus(estatus);
+		Enquiry enq=enquiryService.get_enqDetailsbystatus(status);
 		return new ResponseEntity<Enquiry>(enq, HttpStatus.OK);
 	}
 	

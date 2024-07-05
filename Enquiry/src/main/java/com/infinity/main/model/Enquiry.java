@@ -2,6 +2,8 @@ package com.infinity.main.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,10 +28,8 @@ public class Enquiry {
 	private String pancardno;
 	private String adharcardno;
 	private String gender;
-	private enum enquirystatus{IN_PROGRESS,
-	    APPROVED,
-	    REJECTED,
-	    CLOSED};
+	@Enumerated(EnumType.STRING)
+	private enquirystatus status;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
 	private Cibil cibil;
 

@@ -3,6 +3,7 @@ package com.infinity.main.service;
 import java.util.List;
 
 import com.infinity.main.model.Enquiry;
+import com.infinity.main.model.enquirystatus;
 
 public interface EnquiryService {
 
@@ -10,6 +11,8 @@ public interface EnquiryService {
 
 	public List<Enquiry> getAll_enqDetails();
 
-	public Enquiry get_enqDetailsbyestatus(Enum estatus);
+	public Enquiry get_enqDetailsbystatus(enquirystatus status);
+
+	
 
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.infinity.main.model.Enquiry;
+import com.infinity.main.model.enquirystatus;
 import com.infinity.main.repository.EnquiryRepository;
 import com.infinity.main.service.EnquiryService;
 
@@ -29,10 +30,13 @@ public class EnquiryServiceImpl implements EnquiryService{
 	}
 
 	@Override
-	public Enquiry get_enqDetailsbyestatus(Enum estatus) {
-		        Enquiry e   = enquiryRepository.findByEnquiryStatus(estatus);
-		return e;
+	public Enquiry get_enqDetailsbystatus(enquirystatus status) {
+		
+		Enquiry enq=enquiryRepository.findByStatus(status);
+		return enq;
 	}
+
+	
 	
 	
 
