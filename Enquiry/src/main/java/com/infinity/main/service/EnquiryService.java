@@ -11,7 +11,7 @@ public interface EnquiryService {
 
 	public List<Enquiry> getAll_enqDetails();
 
-	public Enquiry get_enqDetailsbystatus(enquirystatus status);
+	public List<Enquiry> get_enqDetailsbystatus(enquirystatus status);
 
 	
 

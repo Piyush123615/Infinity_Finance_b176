@@ -30,9 +30,9 @@ public class EnquiryServiceImpl implements EnquiryService{
 	}
 
 	@Override
-	public Enquiry get_enqDetailsbystatus(enquirystatus status) {
+	public List<Enquiry> get_enqDetailsbystatus(enquirystatus status) {
 		
-		Enquiry enq=enquiryRepository.findByStatus(status);
+		List<Enquiry> enq=enquiryRepository.findAllByStatus(status);
 		return enq;
 	}
 

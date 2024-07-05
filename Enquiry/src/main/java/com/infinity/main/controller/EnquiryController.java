@@ -36,10 +36,10 @@ public class EnquiryController {
 	}
 	
 	@GetMapping("/get_enquiry/{status}")
-	public ResponseEntity<Enquiry> get_enquirybystatus(@PathVariable enquirystatus status)
+	public ResponseEntity<List<Enquiry>> get_enquirybystatus(@PathVariable enquirystatus status)
 	{
-		Enquiry enq=enquiryService.get_enqDetailsbystatus(status);
-		return new ResponseEntity<Enquiry>(enq, HttpStatus.OK);
+		List<Enquiry> enq=enquiryService.get_enqDetailsbystatus(status);
+		return new ResponseEntity<List<Enquiry>>(enq, HttpStatus.OK);
 	}
 	
 	@PutMapping("/update_enquiry")
