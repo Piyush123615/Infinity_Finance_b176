@@ -47,5 +47,12 @@ public class EnquiryController {
 	{
 		return null;
 	}
+	
+	@PutMapping("/update_enquiry/{enquiryId}")
+	public ResponseEntity<Enquiry> update_enquiry(@RequestBody Enquiry en, @PathVariable int enquiryId)	
+	{
+		Enquiry e=enquiryService.update_enq_byid(en,enquiryId);
+		return new ResponseEntity<Enquiry>(e, HttpStatus.OK);
+	}
 
 }

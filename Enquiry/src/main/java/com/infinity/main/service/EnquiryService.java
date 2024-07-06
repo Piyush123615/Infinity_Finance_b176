@@ -13,6 +13,8 @@ public interface EnquiryService {
 
 	public List<Enquiry> get_enqDetailsbystatus(enquirystatus status);
 
+	public Enquiry update_enq_byid(Enquiry en, int enquiryId);
+
 	
 
 }

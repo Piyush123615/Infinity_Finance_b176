@@ -1,6 +1,7 @@
 package com.infinity.main.serviceimpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,24 @@ public class EnquiryServiceImpl implements EnquiryService{
 		
 		List<Enquiry> enq=enquiryRepository.findAllByStatus(status);
 		return enq;
+	}
+
+	@Override
+	public Enquiry update_enq_byid(Enquiry en, int enquiryId) {
+		
+		Optional<Enquiry> enq =enquiryRepository.findById(enquiryId);
+		
+		if(enq.isPresent())
+		{
+			Enquiry e=enq.get();
+			en.setEnquiryID(e.getEnquiryID());
+			return enquiryRepository.save(en);
+		}
+		else
+		{
+			throw new RuntimeException("Id not found!!");
+		}
+		
 	}
 
 	
