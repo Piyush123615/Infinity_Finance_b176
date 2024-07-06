@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -42,10 +43,12 @@ public class EnquiryController {
 		return new ResponseEntity<List<Enquiry>>(enq, HttpStatus.OK);
 	}
 	
-	@PutMapping("/update_enquiry")
-	public ResponseEntity<Enquiry>update_enquiry()
+	
+	@PatchMapping("/update_enq_status/{enquiryID}/{status}")
+	public ResponseEntity<Enquiry>update_status(@RequestBody Enquiry en,@PathVariable int enquiryID,@PathVariable enquirystatus status)
 	{
-		return null;
+		     Enquiry enq= enquiryService.update_enq_status(en,enquiryID,status);
+		     return new ResponseEntity<Enquiry>(enq, HttpStatus.OK);
 	}
 	
 	@PutMapping("/update_enquiry/{enquiryId}")

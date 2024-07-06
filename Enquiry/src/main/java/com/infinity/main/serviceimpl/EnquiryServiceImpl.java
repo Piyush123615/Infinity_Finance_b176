@@ -38,6 +38,7 @@ public class EnquiryServiceImpl implements EnquiryService{
 	}
 
 	@Override
+
 	public Enquiry update_enq_byid(Enquiry en, int enquiryId) {
 		
 		Optional<Enquiry> enq =enquiryRepository.findById(enquiryId);
@@ -52,11 +53,30 @@ public class EnquiryServiceImpl implements EnquiryService{
 		{
 			throw new RuntimeException("Id not found!!");
 		}
+	}
+
+	public Enquiry update_enq_status(Enquiry en, int enquiryID, enquirystatus status) {
+		     Optional<Enquiry> enq = enquiryRepository.findById(enquiryID);
+		     if(enq.isPresent())
+		     {
+		    	 Enquiry e=enq.get();
+		    	 en.setEnquiryID(e.getEnquiryID());
+		    	 en.setStatus(status);
+		    	 return enquiryRepository.save(en);
+		     }
+		     else
+		     {
+		    	 throw new RuntimeException("ID not Found!!!");
+		     }
 		
+	}
+
+	
+
 	}
 
 	
 	
 	
 
-}
+

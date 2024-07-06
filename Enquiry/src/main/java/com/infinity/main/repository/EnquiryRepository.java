@@ -12,6 +12,8 @@ public interface EnquiryRepository extends JpaRepository<Enquiry, Integer>{
 
 	public List<Enquiry> findAllByStatus(enquirystatus status);
 
+	public Enquiry findByEnquiryID(int enquiryID);
+
 	
 
 }
