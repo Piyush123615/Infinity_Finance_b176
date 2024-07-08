@@ -68,5 +68,11 @@ public class EnquiryController {
 		return new ResponseEntity<Enquiry>(e,HttpStatus.OK);
 		
 	}
+@GetMapping("/get_enq_byenq_cibilstatus/{estatus}/{cstatus}")
+public ResponseEntity<List<Enquiry>> get_enq_bystatus(@PathVariable enquirystatus estatus,@PathVariable String cstatus)
+{
+	   List<Enquiry> e  =  enquiryService.get_enq_bystatus(estatus,cstatus);
+	   return new ResponseEntity<List<Enquiry>>( e,HttpStatus.OK);
+}
 		
 }

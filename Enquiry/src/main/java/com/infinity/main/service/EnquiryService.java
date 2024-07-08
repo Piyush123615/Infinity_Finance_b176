@@ -22,6 +22,8 @@ public interface EnquiryService {
 
 	public Enquiry addCibil(int enquiryId);
 
+	public List<Enquiry> get_enq_bystatus(enquirystatus estatus, String cstatus);
+
 
 	
 

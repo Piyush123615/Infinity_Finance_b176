@@ -14,6 +14,7 @@ public interface EnquiryRepository extends JpaRepository<Enquiry, Integer>{
 
 	public Enquiry findByEnquiryID(int enquiryID);
 
+
 	
 
 }

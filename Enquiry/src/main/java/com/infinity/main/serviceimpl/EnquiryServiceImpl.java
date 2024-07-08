@@ -1,5 +1,6 @@
 package com.infinity.main.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -115,6 +116,31 @@ public class EnquiryServiceImpl implements EnquiryService{
 			
 			return enquiryRepository.save(eq);
 		}		
+	}
+
+	@Override
+	public List<Enquiry> get_enq_bystatus(enquirystatus estatus, String cstatus) {
+		
+		 List<Enquiry> ll = enquiryRepository.findAllByStatus(estatus);
+		 List<Enquiry> nlist=new ArrayList<Enquiry>();
+		 
+		 if(ll.isEmpty())
+		 {
+			 throw new RuntimeException("Enquiry not found on given enq status!!");
+		 }
+		 else
+		 {
+			 for (Enquiry enq : ll) {
+				 
+				 String st=enq.getCibil().getCibilstatus();
+				
+				 if(st.equalsIgnoreCase(cstatus))
+				 {
+					 nlist.add(enq);
+				 }
+			}
+		 }
+		return nlist;
 	}
 
 	
