@@ -2,10 +2,12 @@ package com.infinity.main.serviceimpl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.infinity.main.model.Cibil;
 import com.infinity.main.model.Enquiry;
 import com.infinity.main.model.enquirystatus;
 import com.infinity.main.repository.EnquiryRepository;
@@ -71,9 +73,53 @@ public class EnquiryServiceImpl implements EnquiryService{
 		
 	}
 
+	@Override
+	public Enquiry addCibil(int enquiryId) {
+		
+		Optional<Enquiry> e=enquiryRepository.findById(enquiryId);
+		
+		if(e.isEmpty())
+		{
+		
+			throw new RuntimeException("Id Not Found");
+		
+		}
+			
+		else
+			
+		{
+			Enquiry eq=e.get();
+			Random random=new Random();
+			int cibilscore=300+random.nextInt(601);
+			Cibil c=new Cibil();
+			c.setCibilscore(cibilscore);
+			
+			if(cibilscore<=550)
+			{
+				c.setCibilstatus("Poor");
+			}
+			
+			else if(cibilscore>500 && cibilscore<=750)
+				
+			{
+				
+				c.setCibilstatus("Good");
+			}
+			
+			else
+			{
+				c.setCibilstatus("Excellent");
+			}
+			
+			eq.setCibil(c);
+			
+			return enquiryRepository.save(eq);
+		}		
+	}
+
 	
 
-	}
+}
 
 	
 	

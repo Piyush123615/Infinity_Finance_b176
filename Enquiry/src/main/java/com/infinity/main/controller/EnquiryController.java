@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.infinity.main.model.Cibil;
 import com.infinity.main.model.Enquiry;
 import com.infinity.main.model.enquirystatus;
 import com.infinity.main.service.EnquiryService;
@@ -58,4 +59,14 @@ public class EnquiryController {
 		return new ResponseEntity<Enquiry>(e, HttpStatus.OK);
 	}
 
+	
+	@PutMapping("/add_cibil/{enquiryId}")
+	public ResponseEntity<Enquiry>addcibil(@PathVariable int enquiryId){
+		
+		Enquiry e=enquiryService.addCibil(enquiryId);
+		
+		return new ResponseEntity<Enquiry>(e,HttpStatus.OK);
+		
+	}
+		
 }

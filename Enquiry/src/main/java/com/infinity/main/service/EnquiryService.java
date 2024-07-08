@@ -2,6 +2,7 @@ package com.infinity.main.service;
 
 import java.util.List;
 
+import com.infinity.main.model.Cibil;
 import com.infinity.main.model.Enquiry;
 import com.infinity.main.model.enquirystatus;
 
@@ -18,6 +19,8 @@ public interface EnquiryService {
 
 
 	public Enquiry update_enq_status(Enquiry en, int enquiryID, enquirystatus status);
+
+	public Enquiry addCibil(int enquiryId);
 
 
 	
