@@ -25,7 +25,7 @@ public class EnquiryServiceImpl implements EnquiryService{
 	@Override
 	public Enquiry save_enq_data(Enquiry e) 
 	{
-		
+		e.setStatus(enquirystatus.IN_PROGRESS);
 		return enquiryRepository.save(e);
 	}
 
@@ -101,6 +101,7 @@ public class EnquiryServiceImpl implements EnquiryService{
 			if(cibilscore<=550)
 			{
 				c.setCibilstatus("Poor");
+				eq.setStatus(enquirystatus.REJECTED);
 			}
 			
 			else if(cibilscore>500 && cibilscore<=750)
@@ -108,11 +109,13 @@ public class EnquiryServiceImpl implements EnquiryService{
 			{
 				
 				c.setCibilstatus("Good");
+				eq.setStatus(enquirystatus.APPROVED);
 			}
 			
 			else
 			{
 				c.setCibilstatus("Excellent");
+				eq.setStatus(enquirystatus.APPROVED);
 			}
 			
 			eq.setCibil(c);
