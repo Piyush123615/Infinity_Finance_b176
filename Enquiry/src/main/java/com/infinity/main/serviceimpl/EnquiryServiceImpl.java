@@ -2,13 +2,16 @@ package com.infinity.main.serviceimpl;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.infinity.main.model.Cibil;
+
 import com.infinity.main.model.Enquiry;
 import com.infinity.main.model.enquirystatus;
 import com.infinity.main.repository.EnquiryRepository;
@@ -20,10 +23,10 @@ public class EnquiryServiceImpl implements EnquiryService{
 	EnquiryRepository enquiryRepository;
 
 	@Override
-	public Enquiry save_enq_data(Enquiry e) {
+	public Enquiry save_enq_data(Enquiry e) 
+	{
 		
-		Enquiry enq=enquiryRepository.save(e);
-		return enq;
+		return enquiryRepository.save(e);
 	}
 
 	@Override
@@ -54,7 +57,7 @@ public class EnquiryServiceImpl implements EnquiryService{
 		}
 		else
 		{
-			throw new RuntimeException("Id not found!!");
+			throw new RuntimeException("EnquiryID is not Available!!!");
 		}
 	}
 

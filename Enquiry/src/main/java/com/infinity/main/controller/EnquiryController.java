@@ -18,14 +18,17 @@ import com.infinity.main.model.Enquiry;
 import com.infinity.main.model.enquirystatus;
 import com.infinity.main.service.EnquiryService;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class EnquiryController {
 	@Autowired
 	EnquiryService enquiryService;
 	
 	@PostMapping("/create_enquiry")
-	public ResponseEntity<Enquiry> save_enquiry(@RequestBody Enquiry e)
+	public ResponseEntity<Enquiry> save_enquiry(@Valid @RequestBody Enquiry e)
 	{
+		
 		Enquiry en=enquiryService.save_enq_data(e);
 		return new ResponseEntity<Enquiry>(en, HttpStatus.CREATED);
 	}
