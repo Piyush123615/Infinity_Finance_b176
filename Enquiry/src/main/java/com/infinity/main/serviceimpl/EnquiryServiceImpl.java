@@ -7,6 +7,9 @@ import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 
@@ -21,6 +24,12 @@ import com.infinity.main.service.EnquiryService;
 public class EnquiryServiceImpl implements EnquiryService{
 	@Autowired
 	EnquiryRepository enquiryRepository;
+	
+	@Autowired
+	JavaMailSender sender;
+	
+	@Value("${spring.mail.username}")
+    private String fromMail;
 
 	@Override
 	public Enquiry save_enq_data(Enquiry e) 
@@ -147,6 +156,56 @@ public class EnquiryServiceImpl implements EnquiryService{
 			}
 		 }
 		return nlist;
+	}
+
+	@Override
+	public void send_Email(int enquiryId) {
+
+		Optional<Enquiry> e = enquiryRepository.findById(enquiryId);
+		SimpleMailMessage mail=new SimpleMailMessage();
+		
+		if(e.isEmpty())
+		{
+			throw new RuntimeException("Id not found!!");
+		}
+		else
+		{
+			Enquiry enq=e.get();
+			
+			if(enq.getCibil().getCibilstatus().equalsIgnoreCase("Good") || enq.getCibil().getCibilstatus().equalsIgnoreCase("Excellent"))
+			{
+				mail.setFrom(fromMail);
+				mail.setTo(enq.getEmail());
+				mail.setSubject("Loan Enquiry Response Mail");
+				mail.setText("Dear "+enq.getFirstName()+" "+enq.getLastName()+"\n"
+						+ "Congratulations! Your loan application has been approved.\n"
+						+ "Please review the terms and conditions, and contact us for any clarification.\n"
+						+ "We Appreciate your trust in us.\n\n"
+						+ "Enquiry Details:\n1.Enquiry Id: "+enq.getEnquiryID()+"\n"
+								+ "2.Pan Card Number: "+enq.getPancardno()+"\n"
+										+ "3.Aadhar Card Number: "+enq.getAdharcardno()+"\n"
+												+ "4.Cibil Score: "+enq.getCibil().getCibilscore()
+												+ "\n\nBest Regards \nInfinity Finance");
+				sender.send(mail);
+			}
+			else
+			{
+				mail.setFrom(fromMail);
+				mail.setTo(enq.getEmail());
+				mail.setSubject("Loan Enquiry Response Mail");
+				mail.setText("Dear "+enq.getFirstName()+" "+enq.getLastName()+"\n"
+						+ "We regret to inform you that your loan application has been declined.\n"
+						+ "Please review our eligibility criteria and consider reapplying in the future.\n"
+						+ "For further assistance contact our support team.\n\n"
+						+ "Enquiry Details:\n 1.Enquiry Id: "+enq.getEnquiryID()+"\n"
+						+ "2.Pan Card Number: "+enq.getPancardno()+"\n"
+								+ "3.Aadhar Card Number: "+enq.getAdharcardno()+"\n"
+										+ "4.Cibil Score: "+enq.getCibil().getCibilscore()
+										+ "\n\nBest Regards \nInfinity Finance");
+				sender.send(mail);
+			}
+			
+		}
 	}
 
 	

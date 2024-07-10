@@ -24,6 +24,8 @@ public interface EnquiryService {
 
 	public List<Enquiry> get_enq_bystatus(enquirystatus estatus, String cstatus);
 
+	public void send_Email(int enquiryId);
+
 
 	
 

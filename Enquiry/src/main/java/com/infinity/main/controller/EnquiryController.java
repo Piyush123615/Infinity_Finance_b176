@@ -77,5 +77,12 @@ public ResponseEntity<List<Enquiry>> get_enq_bystatus(@PathVariable enquirystatu
 	   List<Enquiry> e  =  enquiryService.get_enq_bystatus(estatus,cstatus);
 	   return new ResponseEntity<List<Enquiry>>( e,HttpStatus.OK);
 }
+
+@GetMapping("/send_mail/{enquiryId}")
+public ResponseEntity<String> send_mail(@PathVariable int enquiryId)
+{
+	enquiryService.send_Email(enquiryId);
+	return new ResponseEntity<String>("Mail Sent Successfully", HttpStatus.OK);
+}
 		
 }
