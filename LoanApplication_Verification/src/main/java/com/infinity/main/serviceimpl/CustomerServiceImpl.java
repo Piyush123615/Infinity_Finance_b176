@@ -1,6 +1,7 @@
 package com.infinity.main.serviceimpl;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,6 +61,23 @@ public class CustomerServiceImpl implements CustomerService {
 		custloanapp.setStaus(LoanStatus.CREATED);
 		
 		return repository.save(custloanapp);
+	}
+
+	@Override
+	public CustomerLoanApplication update_loan_statusdetails(int custid, LoanStatus newstatus) {
+		Optional<CustomerLoanApplication> op = repository.findById(custid);
+		if(op.isEmpty())
+		{
+			throw new RuntimeException("Customer ID not Found!!!");
+		}
+		else
+		{
+			CustomerLoanApplication c=op.get();
+			c.setStaus(newstatus);
+			return repository.save(c);
+			
+		}
+		
 	}
 
 }
