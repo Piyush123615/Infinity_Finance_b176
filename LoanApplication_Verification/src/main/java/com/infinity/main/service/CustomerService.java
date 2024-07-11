@@ -12,4 +12,7 @@ public interface CustomerService {
 
 	public CustomerLoanApplication update_loan_statusdetails(int custid, LoanStatus newstatus);
 
+	public CustomerLoanApplication update_loanapp_details(int custid, String custJson, MultipartFile pancard,
+			MultipartFile adharcard, MultipartFile photo, MultipartFile signature);
+
 }
