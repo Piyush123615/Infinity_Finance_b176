@@ -83,18 +83,21 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public CustomerLoanApplication update_loanapp_details(int custid, String custJson, MultipartFile pancard,
 			MultipartFile adharcard, MultipartFile photo, MultipartFile signature) {
+		
 		Optional<CustomerLoanApplication> op= repository.findById(custid);
+		CustomerLoanApplication c=null;
+		CustomerLoanApplication custloanapp=null;
+		AllPersonalDocuments apd=new AllPersonalDocuments();
+		ObjectMapper mapper=new ObjectMapper();
+		
 		if(op.isEmpty()) {
 			throw new RuntimeException("Customer ID not Found!!!");
 		}
 		else {
-			 CustomerLoanApplication custloanapp=null;
-			     CustomerLoanApplication c=  op.get();
+			 
+			     c=  op.get();
 			     if(c.getCustomerId()==custid)
 			     {
-			    	 ObjectMapper mapper=new ObjectMapper();
-			    	
-			 	    AllPersonalDocuments apd=new AllPersonalDocuments();
 			 	    
 			 		try {
 			 			
@@ -115,6 +118,7 @@ public class CustomerServiceImpl implements CustomerService {
 			 			apd.setPhoto(photo.getBytes());
 
 			 			apd.setSign(signature.getBytes());
+			 		    custloanapp.setAllpersonaldocs(apd);
 			 		} catch (IOException e) {
 			 			// TODO Auto-generated catch block
 			 			e.printStackTrace();
@@ -123,9 +127,13 @@ public class CustomerServiceImpl implements CustomerService {
 			 		
 			     }
 			     custloanapp.setCustomerId(custid);
+			     custloanapp.getAllpersonaldocs().setDocumentId(c.getAllpersonaldocs().getDocumentId());
+			 
 			     return repository.save(custloanapp);   
 		}
 		
+	
+	}
 	}
 
-}
+
