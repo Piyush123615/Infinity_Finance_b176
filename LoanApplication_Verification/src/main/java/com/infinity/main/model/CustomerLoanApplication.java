@@ -1,5 +1,7 @@
 package com.infinity.main.model;
 
+import java.util.Set;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -33,25 +35,25 @@ public class CustomerLoanApplication {
 	@Enumerated(EnumType.STRING)
 	private LoanStatus staus;
 	@OneToOne(cascade = CascadeType.ALL)
-	private AllPersonalDocuments apd;
+	private AllPersonalDocuments allpersonaldocs;
 	@OneToOne(cascade = CascadeType.ALL)
-	private FamilyDependentInfo fdi;
+	private FamilyDependentInfo familydependentinfo;
 	@OneToOne(cascade = CascadeType.ALL)
-	private CustomerAddress ca;
+	private CustomerAddress custaddr;
+	//@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
+	//private CibilScore cs;
+	@OneToOne(cascade = CascadeType.ALL)
+	private AccountDetails  acdetails;
+	@OneToOne(cascade = CascadeType.ALL)
+	private GuarantorDetails guarantordetails;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
-	private CibilScore cs;
-	@OneToOne(cascade = CascadeType.ALL)
-	private AccountDetails  ad;
-	@OneToOne(cascade = CascadeType.ALL)
-	private GuarantorDetails gd;
-	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
-	private LoanDisbursement ld;
+	private LoanDisbursement loandisbursement;
 	@OneToMany(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
-	private Ledger ledger;
+	private Set<Ledger> ledger;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
-	private SanctionLetter sl;
+	private SanctionLetter sanctionletter;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)	
-	private CustomerVerification cv;
+	private CustomerVerification custverification;
 	
 
 }
