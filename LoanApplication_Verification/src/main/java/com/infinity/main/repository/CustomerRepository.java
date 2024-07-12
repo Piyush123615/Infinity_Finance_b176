@@ -7,8 +7,14 @@ import com.infinity.main.model.LoanStatus;
 
 public interface CustomerRepository extends JpaRepository<CustomerLoanApplication, Integer> {
 
+
 	public CustomerLoanApplication findByCustomerId(int customerId);
 
 	public CustomerLoanApplication findByStatus(LoanStatus status);
+
+	public void deleteByCustomerId(int customerId);
+
+
+
 
 }

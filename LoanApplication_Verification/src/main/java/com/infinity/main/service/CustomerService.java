@@ -2,6 +2,7 @@ package com.infinity.main.service;
 
 import java.util.List;
 
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.infinity.main.model.CustomerLoanApplication;
@@ -11,6 +12,7 @@ public interface CustomerService {
 
 	public CustomerLoanApplication save_cla_details(String custJson, MultipartFile pancard, MultipartFile adharcard,
 			MultipartFile photo, MultipartFile signature);
+
 
 	public CustomerLoanApplication update_loan_statusdetails(int custid, LoanStatus newstatus);
 
@@ -22,5 +24,8 @@ public interface CustomerService {
 	public CustomerLoanApplication getCustomerLoanApplicationByCustomerId(int customerId);
 
 	public CustomerLoanApplication getCustomerLoanApplicationByLoanStatus(LoanStatus status);
+
+	public void deleteCustomerByID(int customerId);
+
 
 }

@@ -65,6 +65,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
+
 	public CustomerLoanApplication update_loan_statusdetails(int custid, LoanStatus newstatus) {
 		Optional<CustomerLoanApplication> op = repository.findById(custid);
 		if(op.isEmpty())
@@ -158,6 +159,14 @@ public class CustomerServiceImpl implements CustomerService {
 		CustomerLoanApplication ca=repository.findByStatus(status);
 		
 		return ca;
+	}
+
+	@Override
+	public void deleteCustomerByID(int customerId) {
+
+	repository.deleteByCustomerId(customerId);
+		
+
 	}
 
 }
