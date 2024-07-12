@@ -33,7 +33,7 @@ public class CustomerLoanApplication {
 	private double downpayment;
 	private double loanrequired;
 	@Enumerated(EnumType.STRING)
-	private LoanStatus staus;
+	private LoanStatus status;
 	@OneToOne(cascade = CascadeType.ALL)
 	private AllPersonalDocuments allpersonaldocs;
 	@OneToOne(cascade = CascadeType.ALL)

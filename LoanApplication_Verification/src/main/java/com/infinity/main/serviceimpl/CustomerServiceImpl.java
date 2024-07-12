@@ -1,6 +1,7 @@
 package com.infinity.main.serviceimpl;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,7 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 		if(apd!=null) custloanapp.setAllpersonaldocs(apd);
 
-		custloanapp.setStaus(LoanStatus.CREATED);
+		custloanapp.setStatus(LoanStatus.CREATED);
 		
 		return repository.save(custloanapp);
 	}
@@ -73,7 +74,7 @@ public class CustomerServiceImpl implements CustomerService {
 		else
 		{
 			CustomerLoanApplication c=op.get();
-			c.setStaus(newstatus);
+			c.setStatus(newstatus);
 			return repository.save(c);
 			
 		}
@@ -134,6 +135,29 @@ public class CustomerServiceImpl implements CustomerService {
 		
 	
 	}
+
+	@Override
+	public List<CustomerLoanApplication> getAllCustomerLoanDetails() {
+
+		Iterable<CustomerLoanApplication> ca=repository.findAll();
+		
+		return (List<CustomerLoanApplication>) ca;
 	}
 
+    @Override
+	public CustomerLoanApplication getCustomerLoanApplicationByCustomerId(int customerId) {
 
+		CustomerLoanApplication ca=repository.findByCustomerId(customerId);
+		
+		return ca;
+	}
+
+	@Override
+	public CustomerLoanApplication getCustomerLoanApplicationByLoanStatus(LoanStatus status) {
+
+		CustomerLoanApplication ca=repository.findByStatus(status);
+		
+		return ca;
+	}
+
+}

@@ -1,8 +1,11 @@
 package com.infinity.main.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.infinity.main.model.CustomerLoanApplication;
 import com.infinity.main.model.LoanStatus;
 import com.infinity.main.service.CustomerService;
+
+
 
 @RestController
 public class Customer_Controller {
@@ -49,4 +54,31 @@ public class Customer_Controller {
     	CustomerLoanApplication cla=service.update_loanapp_details(custid,custJson,pancard,adharcard,photo,signature);
     	return new ResponseEntity<CustomerLoanApplication>(cla,HttpStatus.OK);
     }
+    
+    @GetMapping("/getAll")
+    public ResponseEntity<List<CustomerLoanApplication>> getAll(){
+    	
+    	List<CustomerLoanApplication> ca=service.getAllCustomerLoanDetails();
+    	
+    	return new ResponseEntity<List<CustomerLoanApplication>>(ca,HttpStatus.OK);
+    	
+    }
+    
+    @GetMapping("/getBy_CustomerId/{CustomerId}")
+    public ResponseEntity<CustomerLoanApplication> getByCustomerId(@PathVariable int CustomerId){
+    	
+    	CustomerLoanApplication ca=service.getCustomerLoanApplicationByCustomerId(CustomerId);
+    	
+    	return new ResponseEntity<CustomerLoanApplication>(ca,HttpStatus.OK);
+    }
+    
+    @GetMapping("/getBy_LoanStatus/{status}")
+    public ResponseEntity<CustomerLoanApplication> getByLoanStatus(@PathVariable LoanStatus status){
+    	
+    	CustomerLoanApplication ca=service.getCustomerLoanApplicationByLoanStatus(status);
+    	
+    	return new ResponseEntity<CustomerLoanApplication>(ca,HttpStatus.OK);
+    }
+    
+    
 }
