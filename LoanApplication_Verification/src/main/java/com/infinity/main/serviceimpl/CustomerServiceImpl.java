@@ -3,6 +3,7 @@ package com.infinity.main.serviceimpl;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,12 @@ import com.infinity.main.model.LoanStatus;
 import com.infinity.main.repository.CustomerRepository;
 import com.infinity.main.service.CustomerService;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Valid;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
@@ -31,18 +38,30 @@ public class CustomerServiceImpl implements CustomerService {
 			MultipartFile photo, MultipartFile signature) {
 		
 		ObjectMapper mapper=new ObjectMapper();
+		@Valid	
 		CustomerLoanApplication custloanapp=null;
 	    AllPersonalDocuments apd=new AllPersonalDocuments();
 	    
 		try {
 			
-			custloanapp=mapper.readValue(custJson, CustomerLoanApplication.class);
-			System.out.println(custloanapp);
+		custloanapp=mapper.readValue(custJson, CustomerLoanApplication.class);
 		
-		} catch (JsonProcessingException e) {
+		 Validator validator = Validation.buildDefaultValidatorFactory().getValidator(); 
+		 Set<ConstraintViolation<CustomerLoanApplication>> violations;
+		
+			violations = validator.validate(custloanapp);
+			   if (!violations.isEmpty()) {
+			        throw new ConstraintViolationException(violations);
+		
+			
+		
+		
+		}
+		}catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 		try {
 			apd.setPancard(pancard.getBytes());
@@ -62,7 +81,10 @@ public class CustomerServiceImpl implements CustomerService {
 		custloanapp.setStatus(LoanStatus.CREATED);
 		
 		return repository.save(custloanapp);
+		
+//		return null;
 	}
+	
 
 	@Override
 
