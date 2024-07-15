@@ -12,7 +12,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-
+import com.cjc.main.exception.EnquiryIdNotFoundException;
 import com.infinity.main.model.Cibil;
 
 import com.infinity.main.model.Enquiry;
@@ -66,7 +66,7 @@ public class EnquiryServiceImpl implements EnquiryService{
 		}
 		else
 		{
-			throw new RuntimeException("EnquiryID is not Available!!!");
+			throw new EnquiryIdNotFoundException("EnquiryID is not Available!!!");
 		}
 	}
 
@@ -81,7 +81,7 @@ public class EnquiryServiceImpl implements EnquiryService{
 		     }
 		     else
 		     {
-		    	 throw new RuntimeException("ID not Found!!!");
+		    	 throw new EnquiryIdNotFoundException("EnquiryID is not Available!!!");
 		     }
 		
 	}
@@ -94,7 +94,7 @@ public class EnquiryServiceImpl implements EnquiryService{
 		if(e.isEmpty())
 		{
 		
-			throw new RuntimeException("Id Not Found");
+			throw new EnquiryIdNotFoundException("EnquiryID is not Available!!!");
 		
 		}
 			
@@ -166,7 +166,7 @@ public class EnquiryServiceImpl implements EnquiryService{
 		
 		if(e.isEmpty())
 		{
-			throw new RuntimeException("Id not found!!");
+			throw new EnquiryIdNotFoundException("Enquiry not found on given enq status!!");
 		}
 		else
 		{

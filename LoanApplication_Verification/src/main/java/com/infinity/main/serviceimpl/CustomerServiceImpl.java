@@ -50,7 +50,8 @@ public class CustomerServiceImpl implements CustomerService {
 		 Set<ConstraintViolation<CustomerLoanApplication>> violations;
 		
 			violations = validator.validate(custloanapp);
-			   if (!violations.isEmpty()) {
+			   if (!violations.isEmpty()) 
+			   {
 			        throw new ConstraintViolationException(violations);
 		
 			
