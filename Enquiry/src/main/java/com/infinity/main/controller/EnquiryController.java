@@ -47,11 +47,11 @@ public class EnquiryController {
 		return new ResponseEntity<List<Enquiry>>(enq, HttpStatus.OK);
 	}
 	
-	
+	// Update Enquiry set status='APROVED' where enquiryId=102;
 	@PatchMapping("/update_enq_status/{enquiryID}/{status}")
-	public ResponseEntity<Enquiry>update_status(@RequestBody Enquiry en,@PathVariable int enquiryID,@PathVariable enquirystatus status)
+	public ResponseEntity<Enquiry>update_status(@PathVariable int enquiryID,@PathVariable enquirystatus status)
 	{
-		     Enquiry enq= enquiryService.update_enq_status(en,enquiryID,status);
+		     Enquiry enq= enquiryService.update_enq_status(enquiryID,status);
 		     return new ResponseEntity<Enquiry>(enq, HttpStatus.OK);
 	}
 	

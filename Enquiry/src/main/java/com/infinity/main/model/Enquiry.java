@@ -1,6 +1,8 @@
 package com.infinity.main.model;
 
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import jakarta.persistence.CascadeType;
 
 import jakarta.persistence.Entity;
@@ -25,6 +27,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@DynamicUpdate
 public class Enquiry {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

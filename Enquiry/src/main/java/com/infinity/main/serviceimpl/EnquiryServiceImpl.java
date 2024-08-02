@@ -69,15 +69,20 @@ public class EnquiryServiceImpl implements EnquiryService{
 			throw new EnquiryIdNotFoundException("EnquiryID is not Available!!!");
 		}
 	}
-
-	public Enquiry update_enq_status(Enquiry en, int enquiryID, enquirystatus status) {
+                                        //152
+	public Enquiry update_enq_status(int enquiryID, enquirystatus status) {
+		
 		     Optional<Enquiry> enq = enquiryRepository.findById(enquiryID);
 		     if(enq.isPresent())
 		     {
-		    	 Enquiry e=enq.get();
-		    	 en.setEnquiryID(e.getEnquiryID());
-		    	 en.setStatus(status);
-		    	 return enquiryRepository.save(en);
+					
+					 Enquiry e=enq.get(); 
+					 e.setStatus(status);
+					 /* en.setEnquiryID(e.getEnquiryID());
+					 *  en.setStatus(status);
+					 */
+					  return enquiryRepository.save(e);
+					 
 		     }
 		     else
 		     {
@@ -113,7 +118,7 @@ public class EnquiryServiceImpl implements EnquiryService{
 				eq.setStatus(enquirystatus.REJECTED);
 			}
 			
-			else if(cibilscore>500 && cibilscore<=750)
+			else if(cibilscore>550 && cibilscore<=750)
 				
 			{
 				

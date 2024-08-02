@@ -7,6 +7,7 @@ import com.infinity.main.model.Enquiry;
 import com.infinity.main.model.enquirystatus;
 
 public interface EnquiryService {
+	              //saveEnqyData
 
 	public Enquiry save_enq_data(Enquiry e);
 
@@ -18,7 +19,7 @@ public interface EnquiryService {
 	public Enquiry update_enq_byid(Enquiry en, int enquiryId);
 
 
-	public Enquiry update_enq_status(Enquiry en, int enquiryID, enquirystatus status);
+	public Enquiry update_enq_status(int enquiryID, enquirystatus status);
 
 	public Enquiry addCibil(int enquiryId);
 
