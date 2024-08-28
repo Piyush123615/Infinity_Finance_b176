@@ -42,8 +42,8 @@ public class AdminController {
 	@GetMapping("/getAllAdmin")
 	public ResponseEntity<List<Admin>> getAllAdmin()
 	{
-		List<Admin> ad=service.getAllAdmins();
-		return new ResponseEntity<List<Admin>>(ad, HttpStatus.OK);
+		List<Admin> adm=service.getAllAdmin();
+		return new ResponseEntity<List<Admin>>(adm, HttpStatus.OK);
 	}
 
 }

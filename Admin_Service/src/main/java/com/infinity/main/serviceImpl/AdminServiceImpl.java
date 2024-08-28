@@ -66,7 +66,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public List<Admin> getAllAdmins() {
+	public List<Admin> getAllAdmin() {
 	    List<Admin> list = repository.findAll();
 		return list;
 	}

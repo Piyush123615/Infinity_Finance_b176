@@ -12,6 +12,6 @@ public interface AdminService {
 
 	public Admin getAdmin(String username, String password);
 
-	public List<Admin> getAllAdmins();
+	public List<Admin> getAllAdmin();
 
 }
