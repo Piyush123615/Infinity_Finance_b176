@@ -1,6 +1,7 @@
 package com.infinity.main.serviceImpl;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,6 +63,12 @@ public class AdminServiceImpl implements AdminService{
 			return ad;
 		}
 		
+	}
+
+	@Override
+	public List<Admin> getAllAdmins() {
+	    List<Admin> list = repository.findAll();
+		return list;
 	}
 
 }

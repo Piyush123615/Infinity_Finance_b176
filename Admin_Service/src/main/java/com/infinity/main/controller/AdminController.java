@@ -1,5 +1,7 @@
 package com.infinity.main.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +37,13 @@ public class AdminController {
 	{
 		Admin ad=service.getAdmin(username,password);
 		return new ResponseEntity<Admin>(ad, HttpStatus.OK);
+	}
+	
+	@GetMapping("/getAllAdmin")
+	public ResponseEntity<List<Admin>> getAllAdmin()
+	{
+		List<Admin> ad=service.getAllAdmins();
+		return new ResponseEntity<List<Admin>>(ad, HttpStatus.OK);
 	}
 
 }
