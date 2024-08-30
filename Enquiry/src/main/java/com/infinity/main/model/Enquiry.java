@@ -4,7 +4,7 @@ package com.infinity.main.model;
 import org.hibernate.annotations.DynamicUpdate;
 
 import jakarta.persistence.CascadeType;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -64,6 +64,7 @@ public class Enquiry {
 	 @NotEmpty(message = "Please enter your gender.")
 	private String gender;
 	@Enumerated(EnumType.STRING)
+	@Column(length = 50)
 	private enquirystatus status;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
 	private Cibil cibil;

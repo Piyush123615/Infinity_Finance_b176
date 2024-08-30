@@ -5,6 +5,7 @@ public enum enquirystatus {
 	IN_PROGRESS,
     APPROVED,
     REJECTED,
-    CLOSED;
+    CLOSED,
+    FORWARD_TO_OE;
 
 }
